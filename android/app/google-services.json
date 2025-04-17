@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "191195276308",
+    "firebase_url": "https://b-designer-db-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "b-designer-db",
+    "storage_bucket": "b-designer-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191195276308:android:61503102b250d05286f301",
+        "android_client_info": {
+          "package_name": "com.instagrp.b_designer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ou953mE9YDDZhIAbsxVAeG9zHmBoKX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191195276308:android:3dbe12417fdab99c86f301",
+        "android_client_info": {
+          "package_name": "com.instagrp.b_designer_arch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ou953mE9YDDZhIAbsxVAeG9zHmBoKX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
