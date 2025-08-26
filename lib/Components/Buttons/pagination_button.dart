@@ -19,7 +19,7 @@ class PaginationButton extends StatelessWidget {
           border: Border.all(
             color: isSelected
                 ? Colors.black
-                : Colors.black26, // Lighter border for inactive
+                : Colors.black26,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(5),

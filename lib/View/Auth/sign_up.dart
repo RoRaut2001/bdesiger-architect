@@ -6,6 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 import '../../Helper/Data/lists.dart';
+import '../Screens/Others/services.dart';
+import 'Forms/additional_info.dart';
+import 'Forms/basic_details.dart';
+import 'Forms/documents.dart';
+import 'Forms/softwares.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -93,7 +98,19 @@ class SignUp extends StatelessWidget {
                 minHeight: 20,
               ),
             ),
-            Expanded(child: Obx(()=>controller.forms[controller.pageIndex.value])),
+            Expanded(
+              child: Obx(() {
+                final pages = [
+                  BasicDetails(controller: controller),
+                  Services(),
+                  Software(controller: controller),
+                  AdditionalInfo(controller: controller),
+                  Documents(controller: controller),
+                ];
+                return pages[controller.pageIndex.value];
+              }),
+            ),
+
             SizedBox(
               height: 25,
             )

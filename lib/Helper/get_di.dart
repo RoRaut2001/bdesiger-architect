@@ -6,6 +6,7 @@ import 'package:b_designer_architecture/Controller/chat_controller.dart';
 import 'package:b_designer_architecture/Controller/help_and_support_controller.dart';
 import 'package:b_designer_architecture/Controller/profile_controller.dart';
 import 'package:b_designer_architecture/Controller/report_controller.dart';
+import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../API/Repository/auth_repository.dart';
@@ -25,6 +26,7 @@ Future<void> init() async{
   Get.lazyPut(()=>ProfileRepository(sharedPreferences: sharedPreferences, apiClient: Get.find()), fenix: true);
 
   Get.lazyPut(()=>AuthController(authRepo: Get.find()), fenix: true);
+  Get.lazyPut(()=>SidebarController(), fenix: true);
   Get.lazyPut(()=>ScreenController(), fenix: true);
   Get.lazyPut(()=>ChatController(), fenix: true);
   Get.lazyPut(()=>HelpAndSupportController(), fenix: true);

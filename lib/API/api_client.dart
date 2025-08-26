@@ -24,10 +24,10 @@ class ApiClient extends GetxService {
     liveToken = sharedPreferences.getString(token) ?? "";
     userId = sharedPreferences.getString(uid) ?? "";
     if (kDebugMode) {
-      print('Token: $token');
+      print('Token: $liveToken');
       print('UserId: $userId');
     }
-    updateHeader(token, userId);
+    updateHeader(liveToken, userId);
   }
 
   void updateHeader(String token, String userId) {

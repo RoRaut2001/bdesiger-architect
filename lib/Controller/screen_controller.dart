@@ -6,12 +6,13 @@ import 'package:b_designer_architecture/View/Screens/Others/services.dart';
 import 'package:b_designer_architecture/View/Screens/Others/terms_conditions.dart';
 import 'package:b_designer_architecture/View/Screens/analytics.dart';
 import 'package:b_designer_architecture/View/Screens/billing_page.dart';
-import 'package:b_designer_architecture/View/Screens/home.dart';
+import 'package:b_designer_architecture/View/Screens/Dashboard/dashboard.dart';
 import 'package:b_designer_architecture/View/help_and_support.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../View/Screens/Home/home.dart';
 import '../View/Screens/deals.dart';
 
 class ScreenController extends GetxController {
@@ -68,7 +69,7 @@ class ScreenController extends GetxController {
   void onInit() {
     screens.value = [
       Home(),
-      Deals(controller: this,),
+      Deals(),
       Analytics(),
       Services(),
       About(),

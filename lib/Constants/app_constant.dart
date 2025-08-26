@@ -1,5 +1,6 @@
 // final String baseurl = "https://b-designer-api.vercel.app/";
-final String baseurl = "http://127.0.0.1:3000/";
+// final String baseurl = "http://192.168.1.39:3000/";
+final String baseurl = "https://api.bdesigner.instagrp.in/";
 // final String baseurl = "http://localhost:3000/";
 
 /**** Shared preferences strings ****/

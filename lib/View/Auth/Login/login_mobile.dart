@@ -1,228 +1,152 @@
-import 'package:b_designer_architecture/Constants/constant_color.dart';
-import 'package:b_designer_architecture/Helper/size_config.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../Components/Buttons/submit_button.dart';
 import '../../../Controller/auth_controller.dart';
 
 class LoginMobile extends StatelessWidget {
   LoginMobile({super.key});
 
   final AuthController controller = Get.find<AuthController>();
+
+  RxBool isObscure = false.obs;
+
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 90,
+        backgroundColor: Colors.white,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: Image.network("https://res.cloudinary.com/dculivch8/image/upload/v1733553206/official_logo_transparent_viocqf.png"),
+        ),
+      ),
       backgroundColor: Colors.white,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: SingleChildScrollView(
-          reverse: true,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(50.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                width: screenWidth,
-                height: screenHeight * 0.50,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    Text(
-                      'BDesigner.',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.roboto(
-                        fontWeight: FontWeight.w800,
-                        color: kcGreyText,
-                        fontSize: 5.t,
-                      ),
-                    ),
-                    Image.asset(
-                      'assets/images/intro_img.png',
-                      fit: BoxFit.cover,
-                      width: screenWidth,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                height: screenHeight * 0.50,
-                width: MediaQuery.of(context).size.width,
-                padding:
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.h),
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [kcGradient1, kcGradient2],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 2.h),
-                    Text(
-                      'Build Your Dream Landing,Your Way.',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.jost(
-                          fontSize: 2.2.t, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 1.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5, right: 10),
-                            color: Colors.black,
-                            height: 0.1.h,
-                          ),
-                        ),
-                        SizedBox(width: 4.5.w),
-                        Text(
-                          'Quick • Affordable • Trusted',
-                          style: GoogleFonts.jost(
-                              fontSize: 1.8.t),
-                        ),
-                        SizedBox(width: 4.w),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 10, right: 5),
-                            color: Colors.black,
-                            height: 0.1.h,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 3.h),
-                    SizedBox(
-                      height: 55,
-                      child: TextField(
-                        // controller: controller.phoneController,
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(0),
-                          fillColor: Colors.white,
-                          hintText: 'Mobile Number',
-                          filled: true,
-                          prefixIcon: InkWell(
-                            onTap: (){
-                              showModalBottomSheet(
-                                  backgroundColor: Colors.white,
-                                  isScrollControlled: true,
-                                  context: context,
-                                  builder: (context){
-                                    return Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 20.0,
-                                          horizontal: 15.0
-                                      ),
-                                      // child: Column(
-                                      //   mainAxisSize: MainAxisSize.min,
-                                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                                      //   // children: List.generate(countryCodes.length, (index)=>countryCodes[index]),
-                                      // ),
-                                    );
-                                  });
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(
-                                  right: 10
-                              ),
-                              width: 90,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10.0),
-                                    bottomLeft: Radius.circular(10.0),
-                                  ),
-                                  border: BorderDirectional(
-                                      end: BorderSide(
-                                          color: Colors.black
-                                      )
-                                  )
-                              ),
-                              child: Obx(()=>Text(
-                                  controller.selectedCode.value,
-                                style: TextStyle(
-                                  fontSize: 16
-                                ),
-                                  )),
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: kcGradient1,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 3.h),
-                    SubmitButton(
-                      title: "Get OTP",
-                      onTap: () async {
-                        EasyLoading.show(
-                          status: 'Sending OTP...',
-                        );
-                        await Future.delayed(Duration(seconds: 2));
-                        EasyLoading.dismiss();
-                        // Get.to(()=>OtpScreen(), transition: Transition.fadeIn);
-                        // showSnackBar(
-                        //   title: 'Success',
-                        //   message: 'Otp sent successfully!',
-                        // );
-                      },
-                      theme: "black",
-                    ),
-                    SizedBox(height: 10.h),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text:
-                        'By proceeding you consent to share your information with\nBDesigner’s ',
-                        style: GoogleFonts.inter(
-                            fontSize: 1.5.t, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Privacy Policy',
-                            style: GoogleFonts.inter(
-                                fontSize: 1.5.t, color: Colors.lightBlue),
-                            recognizer: TapGestureRecognizer()..onTap = () {},
-                          ),
-                          TextSpan(
-                            text: ' and ',
-                            style: GoogleFonts.inter(
-                                fontSize: 1.5.t, color: Colors.black),
-                          ),
-                          TextSpan(
-                            text: 'Terms of Service',
-                            style: GoogleFonts.inter(
-                                fontSize: 1.5.t, color: Colors.lightBlue),
-                            recognizer: TapGestureRecognizer()..onTap = () {},
-                          ),
-                          TextSpan(
-                            text: '.',
-                            style: GoogleFonts.inter(
-                                fontSize: 1.5.t, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              Text('Dream Spaces & Design Solutions', style: GoogleFonts.ubuntu(fontSize: 40,fontWeight: FontWeight.bold),),
+              Text('Connecting consultant to endless opportunities, where creativity thrives. '
+                  'Collaborate seamlessly with clients and showcase your expertise.'
+                  'Join a platform designed to empower your vision and deliver excellence.',
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.ubuntu(fontSize: 12,fontWeight: FontWeight.normal),),
+              const SizedBox(height: 30,),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: emailScreen(context),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget textField(TextEditingController controller, Widget prefixIcon, {bool isPassword = false, Widget? suffixIcon}){
+    return TextFormField(
+      style: GoogleFonts.inter(fontSize: 18),
+      obscureText: isPassword ? isObscure.value : false,
+      controller: controller,
+      decoration: InputDecoration(
+          suffixIcon: suffixIcon,
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black)
+          ),
+          prefixIcon: prefixIcon
+      ),
+    );
+  }
+  Widget submitButton(String title, VoidCallback onTap){
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(15.0),
+      child: Container(
+        alignment: Alignment.center,
+        height: 45,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            color: Color(0xFFFFAE47)
+        ),
+        child: Text(title, style: GoogleFonts.inter(
+            color: Colors.white,
+            fontSize: 18
+        ),),
+      ),
+    );
+  }
+
+  Widget title(String title) {
+    return Text(title, style: GoogleFonts.inter(
+        fontWeight: FontWeight.bold,
+        fontSize: 26,
+        color: Colors.black
+    ),);
+  }
+  Widget subtitle(String firstText, String secondText, VoidCallback onTap){
+    return Row(
+      children: [
+        Text(firstText, style: GoogleFonts.inter(
+            fontSize: 12,
+            color: Colors.black
+        ),),
+        TextButton(
+          style: ButtonStyle(
+              padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 5))
+          ),
+          onPressed: onTap, child: Text(secondText, style: GoogleFonts.inter(fontWeight: FontWeight.bold,
+            fontSize: 12,
+            color: Color(0xFFFFAE47)),
+        ),)
+      ],
+    );
+  }
+  Widget emailScreen(BuildContext context){
+    return Container(
+      width: 475,
+      decoration: BoxDecoration(
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 40,),
+          title("Enter your email"),
+          subtitle("Forgot Password?", "Click Here", (){}),
+          const SizedBox(height: 10,),
+          Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(
+                vertical: 30.0,
+                horizontal: 15.0
+            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(
+                    color: Color(0xFFBCBCBC)
+                )
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                textField(controller.emailController, Icon(Icons.email, color: Colors.black,)),
+                const SizedBox(height: 20,),
+                textField(controller.passwordController, IconButton(onPressed: (){}, icon: Icon(Icons.lock_outline)), isPassword: true, suffixIcon: Obx(()=>IconButton(onPressed: ()=>isObscure.value = !isObscure.value, icon: isObscure.value ? Icon(Icons.visibility) : Icon(Icons.visibility_off)))),
+                const SizedBox(height: 20,),
+                Obx(()=> controller.isLoading.value ? Center(child: CircularProgressIndicator(color: Colors.orange, strokeCap: StrokeCap.round,),) : submitButton("Login", (){
+                  controller.login(context);
+                })),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

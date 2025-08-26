@@ -64,6 +64,7 @@ class AuthController extends GetxController {
   var userData = UserModel().obs;
   var projectsData = Projects().obs;
   var userId = ''.obs;
+  var userFirstName = ''.obs;
   var myRatings = <Rating>[].obs;
   var averageRating = 0.0.obs;
 
@@ -115,14 +116,9 @@ class AuthController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     forms.value = [
-      BasicDetails(controller: this),
-      Services(controller: this),
-      Software(controller: this),
-      AdditionalInfo(controller: this),
-      Documents(controller: this),
     ];
   }
 
@@ -136,15 +132,21 @@ class AuthController extends GetxController {
         final String email = emailController.text.trim();
         final String password = passwordController.text.trim();
         final response = await authRepo.login(email, password);
+
         if (response.statusCode == 200) {
+          final user = response.body["userData"];
+
           showSuccess(context, "Login Successful");
-          await authRepo.sharedPreferences.setString("uid", response.body["userData"]["uid"]);
-          await authRepo.sharedPreferences.setString("firstname", response.body["userData"]["name"]);
-          await authRepo.sharedPreferences.setString(token, response.body["userData"]["token"]);
-          authRepo.apiClient.updateHeader(response.body["userData"]["token"], response.body["userData"]["uid"]);
-          Navigator.pushReplacementNamed(context, '/home');
+
+          // await authRepo.sharedPreferences.setString("uid", user["uid"] ?? "");
+          // await authRepo.sharedPreferences.setString("firstname", user["name"] ?? "");
+          // await authRepo.sharedPreferences.setString("token", user["token"] ?? "");
+
+          authRepo.apiClient.updateHeader(user["token"], user["uid"]);
+
+          Navigator.pushReplacementNamed(context, '/dashboard');
         } else {
-          showError(context, response.body["message"]);
+          showError(context, response.body["message"] ?? "Login failed");
         }
       }
     } catch (err) {
@@ -155,11 +157,11 @@ class AuthController extends GetxController {
     }
   }
 
+
   Future<void> verifyUser(String uid, BuildContext context) async {
     try {
       isLoading.value = true;
-      Response response =
-          await authRepo.verifyUser(VerifyUserRequest(uid: uid));
+      Response response = await authRepo.verifyUser(VerifyUserRequest(uid: uid));
       if (response.statusCode == 200 || response.statusCode == 201) {
         otpSent(false);
         clearFields();
@@ -171,8 +173,7 @@ class AuthController extends GetxController {
           } else if (response.body is Map<String, dynamic>) {
             responseBody = response.body as Map<String, dynamic>;
           } else {
-            throw Exception(
-                "Unexpected Response Body Type: ${response.body.runtimeType}");
+            throw Exception("Unexpected Response Body Type: ${response.body.runtimeType}");
           }
         } catch (e) {
           log("JSON Parsing Error: $e");
@@ -181,20 +182,15 @@ class AuthController extends GetxController {
         }
 
         try {
-          VerifyUserResponse verifyResponse =
-              VerifyUserResponse.fromJson(responseBody);
+          VerifyUserResponse verifyResponse = VerifyUserResponse.fromJson(responseBody);
           print("Token: ${responseBody['token']}");
 
-          if (verifyResponse.message == "Already registered" &&
-              verifyResponse.userData!.role == "Architect") {
+          if (verifyResponse.message == "Already registered" && verifyResponse.userData!.role == "Architect") {
             userData.value = verifyResponse.userData!;
-            authRepo.sharedPreferences
-                .setString("firstName", verifyResponse.userData!.name!);
-            authRepo.sharedPreferences
-                .setString("token", verifyResponse.userData!.token!);
-            authRepo.apiClient.updateHeader(
-                verifyResponse.userData!.token ?? "", verifyResponse.uid ?? "");
-            Navigator.pushReplacementNamed(context, '/home');
+            authRepo.sharedPreferences.setString("firstName", verifyResponse.userData!.name!);
+            authRepo.sharedPreferences.setString("token", verifyResponse.userData!.token!);
+            authRepo.apiClient.updateHeader(verifyResponse.userData!.token ?? "", verifyResponse.uid ?? "");
+            Navigator.pushReplacementNamed(context, '/dashboard');
           } else if (verifyResponse.uid != null) {
             userId.value = uid;
             Navigator.pushNamed(context, '/signup');
@@ -215,6 +211,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> registerArchitect(BuildContext context) async {
+    isLoading.value = true;
     try {
       final RegisterArchitectRequest request = RegisterArchitectRequest(
         uid: userId.value,
@@ -235,11 +232,8 @@ class AuthController extends GetxController {
         if (portfolioFilePath.value.path.isNotEmpty)
           MultipartBody("portfolio", portfolioFilePath.value),
       ];
-      EasyLoading.show(indicator: Center(child: CircularProgressIndicator()));
-      isLoading(false);
 
-      Response response =
-          await authRepo.registerArchitect(request, multipartBody);
+      Response response = await authRepo.registerArchitect(request, multipartBody);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         Get.snackbar("Yeah!", "Registration successful");
@@ -249,17 +243,15 @@ class AuthController extends GetxController {
         await authRepo.sharedPreferences.setString("token", token);
         authRepo.apiClient.updateHeader(token, uid);
         Navigator.pushNamedAndRemoveUntil(
-            context, '/home', (Route<dynamic> route) => false);
+            context, '/dashboard', (Route<dynamic> route) => false);
       } else {
-        Get.snackbar("Oops!",
-            response.body['error']?.first['message'] ?? "Error occurred");
+        Get.snackbar("Oops!", response.body['error']?.first['message'] ?? "Error occurred");
       }
     } catch (err) {
       print("Exception: $err");
       Get.snackbar("Oops!", "Something went wrong");
     } finally {
-      isLoading(false);
-      EasyLoading.dismiss();
+      isLoading.value = false;
     }
   }
 
@@ -397,12 +389,12 @@ class AuthController extends GetxController {
   }
 
   void assignValues(UserModel user) {
-    nameController.text = user.name!;
-    emailController.text = user.email!;
-    stateController.text = user.state!;
-    villageController.text = user.town!;
-    gender.value = user.gender!;
-    position.value = user.position!;
+    nameController.text = user.name ?? "";
+    emailController.text = user.email ?? '';
+    stateController.text = user.state ?? '';
+    villageController.text = user.town ?? '';
+    gender.value = user.gender?? '';
+    position.value = user.position?? '';
   }
 
   void clearFields() {

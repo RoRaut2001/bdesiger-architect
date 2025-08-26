@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Constants/constant_asset.dart';
 import '../Constants/constant_color.dart';
 import 'package:get/get.dart';
-
 import '../Helper/size_config.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -53,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (uid.isEmpty) {
           Navigator.pushNamed(Get.context!, '/login');
         } else {
-          Navigator.pushNamed(Get.context!, '/home');
+          Navigator.pushNamed(Get.context!, '/dashboard');
         }
       });
     });

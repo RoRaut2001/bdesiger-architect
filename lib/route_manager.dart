@@ -1,36 +1,50 @@
-import 'package:b_designer_architecture/View/Auth/Login/login.dart';
-import 'package:b_designer_architecture/View/Auth/sign_up.dart';
-import 'package:b_designer_architecture/View/Screens/project_details.dart';
-import 'package:b_designer_architecture/View/homepage.dart';
 import 'package:flutter/material.dart';
+
+import 'View/Auth/Login/login.dart';
+import 'View/Screens/Dashboard/dashboard.dart';
+import 'View/Screens/chat_screen.dart';
+import 'View/temp.dart';
+import 'auth_wrapper.dart';
 
 
 class RouteManager {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case '/login':
         return MaterialPageRoute(
           builder: (context) => Login(),
           settings: settings,
         );
-      case '/signup':
+        case '/temp':
         return MaterialPageRoute(
-          builder: (context) => SignUp(),
+          builder: (context) => Temp(),
           settings: settings,
         );
-      case '/home':
+      case '/auth':
         return MaterialPageRoute(
-          builder: (context) => Homepage(),
+          builder: (context) => AuthWrapper(),
           settings: settings,
         );
-      case '/project-details':
+      // case '/architect-table':
+      //   return MaterialPageRoute(
+      //     builder: (context) => ArchitectTablePage(),
+      //     settings: settings,
+      //   );
+      case '/dashboard':
         return MaterialPageRoute(
-          builder: (context) => ProjectDetails(),
+          builder: (context) => Dashboard(),
+          settings: settings,
+        );
+      case '/chat':
+        return MaterialPageRoute(
+          builder: (context) => ChatScreen(),
           settings: settings,
         );
       default:
         return MaterialPageRoute(
-          builder: (context) => Login(),
+          builder: (context) => Container(
+            child: Text('404 Page not found'),
+          ),
           settings: settings,
         );
     }

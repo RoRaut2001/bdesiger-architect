@@ -10,6 +10,7 @@ void setIsSizeInitialized(bool isSizeInitialized){
 /**** index for routing ****/
 
 RxInt index = 0.obs;
+RxString selectedItem = 'Home'.obs;
 
 
 RxList<Map<String, String>> yourAccountSupport = [

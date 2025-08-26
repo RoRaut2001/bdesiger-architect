@@ -9,7 +9,7 @@ void showSuccess(BuildContext context, String message){
     context: context,
     type: ToastificationType.success,
     title: Text(message, style: TextStyle(
-      fontSize: 1.t,
+      fontSize: 13,
       color: Colors.black
     ),),
     style: ToastificationStyle.flat,
@@ -24,7 +24,7 @@ void showError(BuildContext context, String message){
     context: context,
     type: ToastificationType.error,
     title: Text(message, style: TextStyle(
-      fontSize: 1.t,
+      fontSize: 13,
       color: Colors.black
     ),),
     style: ToastificationStyle.flat,
@@ -39,7 +39,7 @@ void showWarning(BuildContext context, String message){
     context: context,
     type: ToastificationType.warning,
     title: Text(message, style: TextStyle(
-      fontSize: 1.t,
+      fontSize: 13,
       color: Colors.black
     ),),
     style: ToastificationStyle.flat,
@@ -54,7 +54,7 @@ void showInfo(BuildContext context, String message){
     context: context,
     type: ToastificationType.info,
     title: Text(message, style: TextStyle(
-      fontSize: 1.t,
+      fontSize: 13,
       color: Colors.black
     ),),
     style: ToastificationStyle.flat,

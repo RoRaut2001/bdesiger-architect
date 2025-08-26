@@ -7,9 +7,10 @@ import '../../../Helper/Data/lists.dart';
 import 'package:b_designer_architecture/Components/Buttons/submit_button.dart';
 
 class Services extends StatelessWidget {
-  final AuthController controller;
 
-  const Services({super.key, required this.controller});
+   Services({super.key});
+
+  final AuthController controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {

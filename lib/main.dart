@@ -1,12 +1,11 @@
-import 'dart:io';
-
-import 'package:b_designer_architecture/firebase_options.dart';
+import 'dart:developer';
 import 'package:b_designer_architecture/route_definations.dart';
 import 'package:b_designer_architecture/route_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'firebase_options.dart';
 import 'helper/get_di.dart' as di;
 import 'helper/size_config.dart';
 import 'package:media_kit/media_kit.dart';
@@ -17,17 +16,9 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
   MediaKit.ensureInitialized();
-  HttpOverrides.global = MyHttpOverrides();
+  log("Dependencies initialized");
   runApp(MyApp());
-}
-
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
+  log("App Running");
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +28,8 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         return OrientationBuilder(builder: (BuildContext context2, Orientation orientation){
           SizeConfig.init(constraints, orientation);
+          log("Size config initialized");
+          log("Running Material App");
           return GetMaterialApp(
             title: "BDesigner",
             theme: ThemeData(
@@ -46,8 +39,9 @@ class MyApp extends StatelessWidget {
             ),
             builder: EasyLoading.init(),
             onGenerateRoute: RouteManager.generateRoute,
-            initialRoute: '/',
+            initialRoute: '/auth',
             routes: routes,
+            // home: AuthWrapper(),
             debugShowCheckedModeBanner: false,
           );
         });
