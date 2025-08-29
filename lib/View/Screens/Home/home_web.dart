@@ -1,3 +1,4 @@
+import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:b_designer_architecture/Helper/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,7 @@ class HomeWeb extends StatelessWidget {
 
   final ScrollController _scrollController = ScrollController();
   final ScreenController screenController = Get.find<ScreenController>();
+  final SidebarController sidebarController = Get.find<SidebarController>();
 
   final List<String> items = features.take(9).toList();
 
@@ -86,7 +88,7 @@ class HomeWeb extends StatelessWidget {
               subtitle: deal['subtitle'],
               leading: deal['img'],
               onTap: () {
-                selectedItem.value = 'Deals';
+                sidebarController.selectedItem.value = 'Deals';
                 screenController.selectedDealIndex.value = deal['index'];
               },
             ),

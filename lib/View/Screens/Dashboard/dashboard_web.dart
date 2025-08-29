@@ -1,11 +1,11 @@
 import 'package:b_designer_architecture/Controller/screen_controller.dart';
+import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:popover/popover.dart';
 import '../../../Components/Buttons/primary_button.dart';
 import '../../../Controller/auth_controller.dart';
-import '../../../Helper/Data/setter_fields.dart';
 import '../../../Helper/get_selected_screen.dart';
 import '../Sidebar/sidebar/sidebar.dart';
 
@@ -13,6 +13,7 @@ class DashboardWeb extends StatelessWidget {
   DashboardWeb({super.key});
 
   final AuthController authController = Get.find<AuthController>();
+  final SidebarController sidebarController = Get.find<SidebarController>();
   final ScreenController controller = Get.find<ScreenController>();
 
   @override
@@ -98,11 +99,10 @@ class DashboardWeb extends StatelessWidget {
               Expanded(
                 child: Obx(() {
                   return Container(
-
                     decoration: BoxDecoration(
                       color: Color(0xFFFFFBF4),
                     ),
-                    child:getSelectedScreen(selectedItem.value),
+                    child: getSelectedScreen(sidebarController.selectedItem.value),
                   );
                 }),
               ),
