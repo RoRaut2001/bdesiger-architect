@@ -1,27 +1,48 @@
-import 'package:b_designer_architecture/Helper/Data/lists.dart';
-import 'package:b_designer_architecture/View/Screens/Others/about.dart';
-import 'package:b_designer_architecture/View/Screens/Others/contact.dart';
-import 'package:b_designer_architecture/View/Screens/Others/privacy_policy.dart';
-import 'package:b_designer_architecture/View/Screens/Others/services.dart';
-import 'package:b_designer_architecture/View/Screens/Others/terms_conditions.dart';
-import 'package:b_designer_architecture/View/Screens/analytics.dart';
-import 'package:b_designer_architecture/View/Screens/billing_page.dart';
-import 'package:b_designer_architecture/View/Screens/Dashboard/dashboard.dart';
-import 'package:b_designer_architecture/View/help_and_support.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
+import '../Helper/Data/lists.dart';
+import '../View/Auth/Forms/services.dart';
 import '../View/Screens/Home/home.dart';
-import '../View/Screens/deals.dart';
+import '../View/Screens/Others/about.dart';
+import '../View/Screens/Others/contact.dart';
+import '../View/Screens/Others/privacy_policy.dart';
+import '../View/Screens/Others/terms_conditions.dart';
+import '../View/Screens/Sidebar/Analytics/analytics.dart';
+
 
 class ScreenController extends GetxController {
+
+  var selectedTab = 0.obs;
+  var selectedClientTab = 0.obs;
+  var selectedArchitectTab = 0.obs;
+  var selectedNeedHelpCardTab = 0.obs;
+  var selectedArchitectNeedHelpCardTab = 0.obs;
+
+  void changeTab(int index) {
+    selectedTab.value = index;
+  }
+  void changeClientTab(int index) {
+    selectedClientTab.value = index;
+  }
+  void changeArchitectTab(int index) {
+    selectedArchitectTab.value = index;
+  }
+
+  void changeNeedHelpCardTab(int index) {
+    selectedNeedHelpCardTab.value = index;
+  }
+
+  void changeArchitectNeedHelpCardTab(int index) {
+    selectedArchitectNeedHelpCardTab.value = index;
+  }
+
 
   final List<Widget> iconList = List<Widget>.generate(4, (index) {
     return CachedNetworkImage(
       imageUrl: iconUrls[index],
-      placeholder: (context, url) => alternateIconsList[index], // Wrap IconData in an Icon widget
-      errorWidget: (context, url, error) => alternateIconsList[index], // Wrap IconData in an Icon widget
+      placeholder: (context, url) => alternateIconsList[index],
+      errorWidget: (context, url, error) => alternateIconsList[index],
     );
   });
   final List queryItemIcons = <Widget>[
@@ -69,19 +90,13 @@ class ScreenController extends GetxController {
   void onInit() {
     screens.value = [
       Home(),
-      Deals(),
       Analytics(),
       Services(),
       About(),
       Contact(),
       PrivacyPolicy(),
       TermsConditions(),
-      BillingPage(),
-      HelpAndSupport()
     ];
     super.onInit();
   }
-
-
-
 }

@@ -1,14 +1,12 @@
+import 'package:b_designer_architecture/View/Screens/Deals/deals_mobile.dart';
 import 'package:flutter/material.dart';
-import '../../Controller/screen_controller.dart';
-import '../../helper/responsive.dart';
 import 'package:get/get.dart';
-
-import 'Mobile/deals_mobile.dart';
-import 'Web/deals_web.dart';
+import '../../../Controller/screen_controller.dart';
+import '../../../Helper/responsive.dart';
+import 'deals_web.dart';
 
 class Deals extends StatelessWidget {
   Deals({super.key});
-
   final ScreenController controller = Get.find<ScreenController>();
 
   @override

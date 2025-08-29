@@ -6,7 +6,6 @@ import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Constants/app_constant.dart';
 import 'Model/error_response.dart';
 
@@ -16,8 +15,8 @@ class ApiClient extends GetxService {
   static final String noInternetMessage = 'Unable to connect to server'.tr;
   final int timeoutInSeconds = 40;
 
-  String liveToken = token;
-  String userId = uid;
+  late String liveToken;
+  late String userId;
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
@@ -36,9 +35,9 @@ class ApiClient extends GetxService {
       'Authorization': 'Bearer $token',
     };
     this.userId = userId;
+    this.liveToken = token;
     if (kDebugMode) {
       print('Updated Headers: $_mainHeaders');
-      log('Updated Headers: $_mainHeaders');
     }
   }
 
@@ -85,14 +84,33 @@ class ApiClient extends GetxService {
         print('====> API Body: $body with ${multipartBody.length} pictures');
       }
       http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
-      request.headers.addAll(_mainHeaders);
+      // Create a mutable copy of _mainHeaders
+      Map<String, String> requestHeaders = Map.from(_mainHeaders);
+
+      // Remove Content-Type if it exists, as MultipartRequest will handle it
+      requestHeaders.remove('Content-Type');
+      requestHeaders.addAll({"Content-Type": "multipart/form-data"});
+
+      // Add the modified headers to the request
+      request.headers.addAll(requestHeaders);
       for (MultipartBody multipart in multipartBody) {
-        if (multipart.file != null) {
-          Uint8List list = await multipart.file!.readAsBytes();
-          request.files.add(http.MultipartFile(
-            multipart.key, multipart.file!.readAsBytes().asStream(), list.length,
-            filename: '${DateTime.now().toString()}.png',
-          ));
+        if (multipart.isValid) {
+          if (multipart.isWeb && multipart.webBytes != null) {
+            request.files.add(http.MultipartFile(
+              multipart.key,
+              Stream.value(multipart.webBytes!),
+              multipart.webBytes!.length,
+              filename: multipart.filename ?? '${DateTime.now().toString()}.png',
+            ));
+          } else if (multipart.file != null) {
+            Uint8List list = await multipart.file!.readAsBytes();
+            request.files.add(http.MultipartFile(
+              multipart.key,
+              Stream.value(list),
+              list.length,
+              filename: multipart.filename ?? '${DateTime.now().toString()}.png',
+            ));
+          }
         }
       }
 
@@ -222,8 +240,20 @@ Map<String, String> _processReportFields(Map<String, dynamic> reportData) {
 
 
 class MultipartBody {
-  String key;
-  XFile? file;
+  final String key;
+  final XFile? file;           // Used for mobile/desktop
+  final Uint8List? webBytes;   // Used for web
+  final String? filename;      // Optional: useful for web uploads
 
-  MultipartBody(this.key, this.file);
+  MultipartBody({
+    required this.key,
+    this.file,
+    this.webBytes,
+    this.filename,
+  });
+
+  bool get isWeb => kIsWeb;
+
+  bool get isValid => (kIsWeb && webBytes != null) || (!kIsWeb && file != null);
 }
+

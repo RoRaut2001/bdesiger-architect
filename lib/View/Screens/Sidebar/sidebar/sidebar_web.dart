@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../Controller/sidebar_controller.dart';
@@ -23,11 +25,6 @@ class SidebarWeb extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const SizedBox(height: 20),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 20),
-            //   child: Image.asset('assets/images/bdesigner_official_logo_tranparent.png', width: 100),
-            // ),
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
@@ -43,6 +40,7 @@ class SidebarWeb extends StatelessWidget {
                       subItems: item.subItems,
                       onTap: () {
                         controller.selectItem(item.label);
+                        log(item.label);
                         if (item.subItems != null) {
                           controller.toggleExpansion(item.label);
                         }

@@ -1,3 +1,4 @@
+import 'package:b_designer_architecture/Controller/screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,7 @@ class DashboardWeb extends StatelessWidget {
   DashboardWeb({super.key});
 
   final AuthController authController = Get.find<AuthController>();
+  final ScreenController controller = Get.find<ScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +98,11 @@ class DashboardWeb extends StatelessWidget {
               Expanded(
                 child: Obx(() {
                   return Container(
+
                     decoration: BoxDecoration(
                       color: Color(0xFFFFFBF4),
                     ),
-                    child: getSelectedScreen(selectedItem.value),
+                    child:getSelectedScreen(selectedItem.value),
                   );
                 }),
               ),

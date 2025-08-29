@@ -138,9 +138,9 @@ class AuthController extends GetxController {
 
           showSuccess(context, "Login Successful");
 
-          // await authRepo.sharedPreferences.setString("uid", user["uid"] ?? "");
-          // await authRepo.sharedPreferences.setString("firstname", user["name"] ?? "");
-          // await authRepo.sharedPreferences.setString("token", user["token"] ?? "");
+          await authRepo.sharedPreferences.setString("uid", user["uid"] ?? "");
+          await authRepo.sharedPreferences.setString("firstname", user["name"] ?? "");
+          await authRepo.sharedPreferences.setString("token", user["token"] ?? "");
 
           authRepo.apiClient.updateHeader(user["token"], user["uid"]);
 
@@ -226,12 +226,22 @@ class AuthController extends GetxController {
 
       List<MultipartBody> multipartBody = [
         if (cvFilePath.value.path.isNotEmpty)
-          MultipartBody("cv", cvFilePath.value),
+          MultipartBody(
+            key: "cv",
+            file: cvFilePath.value,
+          ),
         if (certificateFilePath.value.path.isNotEmpty)
-          MultipartBody("certificate", certificateFilePath.value),
+          MultipartBody(
+            key: "certificate",
+            file: certificateFilePath.value,
+          ),
         if (portfolioFilePath.value.path.isNotEmpty)
-          MultipartBody("portfolio", portfolioFilePath.value),
+          MultipartBody(
+            key: "portfolio",
+            file: portfolioFilePath.value,
+          ),
       ];
+
 
       Response response = await authRepo.registerArchitect(request, multipartBody);
 
@@ -359,7 +369,9 @@ class AuthController extends GetxController {
       final List<MultipartBody> multipartBody = [];
       if (newProfilePicturePath.isNotEmpty) {
         multipartBody
-            .assign(MultipartBody("profilePicture", profilePicturePath.value));
+            .assign(MultipartBody(
+          key: "profilePicture",
+          file: profilePicturePath.value,));
       }
 
       Response response =

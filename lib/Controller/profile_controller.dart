@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:b_designer_architecture/API/Repository/profile_repository.dart';
 import 'package:b_designer_architecture/Helper/toast_messages.dart';
 import 'package:b_designer_architecture/View/Auth/Login/login.dart';
@@ -90,7 +92,9 @@ class ProfileController extends GetxController{
 
       final List<MultipartBody> multipartBody = [];
       if (newProfilePicturePath.isNotEmpty) {
-        multipartBody.add(MultipartBody("profilePicture", profilePicturePath.value));
+        multipartBody.add(MultipartBody(
+          key: "profilePicture",
+          file: profilePicturePath.value,));
       }
 
       Response response = await profileRepo.updateArchitect(request, multipartBody);

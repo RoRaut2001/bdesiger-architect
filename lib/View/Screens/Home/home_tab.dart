@@ -62,7 +62,7 @@ class HomeTab extends StatelessWidget {
             style: GoogleFonts.outfit(
               color: Color(0xFF656565),
               fontWeight: FontWeight.w600,
-              fontSize: 1.2.t,
+              fontSize: 16,
             )),
         subtitle: Text("Let's help you finish your workday",
             style: GoogleFonts.outfit(

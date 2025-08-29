@@ -1,4 +1,3 @@
-
 class ReportModel {
   final String? projectId;
   final String? createdById;
@@ -106,7 +105,7 @@ class CommonData {
   List<String>? selectedServices;
   RectangleModel? plotArea;
   RectangleModel? builtupArea;
-  int? totalBuildupArea;
+  double? totalBuildupArea;
   int? floorCount;
   String? location;
   int? familyMemberCount;
@@ -115,7 +114,7 @@ class CommonData {
   int? bike;
   int? cars;
   int? suv;
-  int? totalAmount;
+  double? totalAmount;
 
   CommonData({
     this.architectId,
@@ -149,7 +148,7 @@ class CommonData {
     builtupArea = json['builtupArea'] != null
         ? RectangleModel.fromJson(json['builtupArea'])
         : null;
-    totalBuildupArea = json['totalBuildupArea'] as int?;
+    totalBuildupArea = (json['totalBuildupArea'] as num?)?.toDouble();
     floorCount = json['floorCount'] as int?;
     location = json['location'] as String?;
     familyMemberCount = json['familyMemberCount'] as int?;
@@ -158,7 +157,7 @@ class CommonData {
     bike = json['bike'] as int?;
     cars = json['cars'] as int?;
     suv = json['suv'] as int?;
-    totalAmount = json['totalAmount'] as int?;
+    totalAmount = (json['totalAmount'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -189,7 +188,7 @@ class FloorPlan {
   RectangleModel? sideMargin;
   RectangleModel? sideDetails;
   Map<String, dynamic>? floorData;
-  int? floorPlanAmount;
+  double? floorPlanAmount;
 
   FloorPlan({
     this.elevationType,
@@ -212,7 +211,7 @@ class FloorPlan {
         ? RectangleModel.fromJson(json['sideDetails'])
         : null;
     floorData = json['floorData'] as Map<String, dynamic>?;
-    floorPlanAmount = json['floorPlanAmount'] as int?;
+    floorPlanAmount = (json['floorPlanAmount'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -233,7 +232,7 @@ class ThreeDPlan {
   String? budget;
   List<String>? feature;
   List<String>? views;
-  int? threeDPlanAmount;
+  double? threeDPlanAmount;
 
   ThreeDPlan({
     this.elevationType,
@@ -252,7 +251,7 @@ class ThreeDPlan {
     views = (json['views'] as List<dynamic>?)
         ?.map((e) => e.toString())
         .toList();
-    threeDPlanAmount = json['threeDPlanAmount'] as int?;
+    threeDPlanAmount = (json['threeDPlanAmount'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -273,7 +272,7 @@ class InteriorPlan {
   String? interiorDesignType;
   List<String>? designDetails;
   String? budget;
-  int? interiorAmount;
+  double? interiorAmount;
 
   InteriorPlan({
     this.serviceType,
@@ -296,7 +295,7 @@ class InteriorPlan {
         ?.map((e) => e.toString())
         .toList();
     budget = json['budget'] as String?;
-    interiorAmount = json['interiorAmount'] as int?;
+    interiorAmount = (json['interiorAmount'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {

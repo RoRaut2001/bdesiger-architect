@@ -29,3 +29,13 @@ final String requestProjectUrl = "architect/report/request-project";
 
 final String getMyRatingsUrl = "ratings/get-my-rating";
 final String getRatingsUrl = "architect/get-rating-by-id";
+
+
+/**** Submission URL ****/
+String getSubmissionsUrl(String id) => 'architect/submission/fetch-by-id/$id';
+String floorPlanSubmissionUrl = 'architect/submission/floor-plan';
+String threeDPlanSubmissionUrl = 'architect/submission/three-d-plan';
+String interiorPlanSubmissionUrl = 'architect/submission/interior';
+String structuralPlanSubmissionUrl = 'architect/submission/structural';
+String electricalPlanSubmissionUrl = 'architect/submission/electrical';
+String plumbingPlanSubmissionUrl = 'architect/submission/plumbing';
