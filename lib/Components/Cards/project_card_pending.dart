@@ -1,13 +1,11 @@
-import 'package:b_designer_architecture/Constants/constant_asset.dart';
-import 'package:b_designer_architecture/Controller/report_controller.dart';
 import 'package:b_designer_architecture/Helper/size_config.dart';
-import 'package:b_designer_architecture/Model/report_model.dart';
-import 'package:b_designer_architecture/View/Project/submission_main_page.dart';
-import 'package:b_designer_architecture/View/Screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import '../../../../Model/report_model.dart';
+import '../../Constants/constant_asset.dart';
+import '../../Controller/report_controller.dart';
 
 enum ThemeType{
   Dark, Light
@@ -96,7 +94,7 @@ class ProjectCardPending extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _buildCardButton(title: "Upload Data", icon: kaUpload, onTap: (){
-                  Get.to(()=>SubmissionMainPage(report: report,), transition: Transition.fade);
+                  Navigator.pushNamed(context, '/submissionMainPage', arguments: report);
                 }),
                 _buildCardButton(title: "Chat Now", icon: kaChatNow, onTap: (){
                   Navigator.pushNamed(context, '/chat', arguments: report);

@@ -10,9 +10,11 @@ import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../API/Repository/auth_repository.dart';
+import '../API/Repository/client_repository.dart';
 import '../API/Repository/submission_repository.dart';
 import '../API/api_client.dart';
 import '../Constants/app_constant.dart';
+import '../Controller/client_controller.dart';
 import '../Controller/screen_controller.dart';
 import '../Controller/submission_controller.dart';
 
@@ -27,11 +29,15 @@ Future<void> init() async{
   Get.lazyPut(()=>ReportRepository(sharedPreferences: sharedPreferences, apiClient: Get.find()), fenix: true);
   Get.lazyPut(()=>ProfileRepository(sharedPreferences: sharedPreferences, apiClient: Get.find()), fenix: true);
   Get.lazyPut(()=>SubmissionRepository(sharedPreferences: sharedPreferences, apiClient: Get.find()), fenix: true);
+  Get.lazyPut(()=>ClientRepository(sharedPreferences: sharedPreferences, apiClient: Get.find()), fenix: true);
+
 
 
   Get.lazyPut(()=>AuthController(authRepo: Get.find()), fenix: true);
   Get.lazyPut(()=>SubmissionController(submissionRepository: Get.find<SubmissionRepository>()), fenix: true);
   Get.lazyPut(()=>SidebarController(), fenix: true);
+  Get.lazyPut(()=>ClientController(clientRepo: Get.find<ClientRepository>()), fenix: true);
+
   Get.lazyPut(()=>ScreenController(), fenix: true);
   Get.lazyPut(()=>ChatController(), fenix: true);
   Get.lazyPut(()=>HelpAndSupportController(), fenix: true);

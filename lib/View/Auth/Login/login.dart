@@ -1,8 +1,11 @@
+
 import 'dart:developer';
-import 'package:b_designer_architecture/Helper/responsive.dart';
-import 'package:b_designer_architecture/View/Auth/Login/login_web.dart';
-import 'package:b_designer_architecture/View/Auth/Login/login_mobile.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../Helper/responsive.dart';
+import 'login_mobile.dart';
+import 'login_web.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});

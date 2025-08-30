@@ -8,7 +8,6 @@ import '../../../Components/Cards/video_card.dart';
 import '../../../Constants/constant_asset.dart';
 import '../../../Controller/screen_controller.dart';
 import '../../../Helper/Data/lists.dart';
-import '../../../helper/Data/setter_fields.dart';
 
 class HomeWeb extends StatelessWidget {
   HomeWeb({super.key});
@@ -90,6 +89,7 @@ class HomeWeb extends StatelessWidget {
               onTap: () {
                 sidebarController.selectedItem.value = 'Deals';
                 screenController.selectedDealIndex.value = deal['index'];
+
               },
             ),
           )).toList(),

@@ -8,14 +8,10 @@ import '../../../Model/report_model.dart';
 
 class ProjectCard extends StatelessWidget {
   final ReportModel report;
-  final VoidCallback assignConsultant;
-  final VoidCallback assignArchitect;
 
   const ProjectCard({
     super.key,
     required this.report,
-    required this.assignConsultant,
-    required this.assignArchitect,
   });
 
   @override
@@ -23,18 +19,12 @@ class ProjectCard extends StatelessWidget {
     return Responsive(
       mobile: ProjectCardMobile(
         report: report,
-        assignConsultant: assignConsultant,
-        assignArchitect: assignArchitect,
       ),
       tablet: ProjectCardTab(
         report: report,
-        assignConsultant: assignConsultant,
-        assignArchitect: assignArchitect,
       ),
       desktop: ProjectCardWeb(
         report: report,
-        assignConsultant: assignConsultant,
-        assignArchitect: assignArchitect,
       ),
     );
   }

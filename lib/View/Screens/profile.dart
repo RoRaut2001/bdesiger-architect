@@ -14,7 +14,9 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Responsive(mobile: ProfileMobile(), tablet: ProfileWeb(), desktop: ProfileWeb());
+    return Responsive(
+        mobile: ProfileMobile(),
+        tablet: ProfileWeb(),
+        desktop: ProfileWeb());
   }
 }

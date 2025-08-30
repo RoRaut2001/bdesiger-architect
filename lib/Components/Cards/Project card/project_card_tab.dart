@@ -8,15 +8,11 @@ import '../../../Controller/report_controller.dart';
 
 class ProjectCardTab extends StatelessWidget {
   final ReportModel report;
-  final VoidCallback assignConsultant;
-  final VoidCallback assignArchitect;
   final ReportController reportController = Get.find<ReportController>();
 
   ProjectCardTab({
     super.key,
     required this.report,
-    required this.assignConsultant,
-    required this.assignArchitect,
   });
 
   String getDesignType(ReportModel report) {
@@ -118,16 +114,6 @@ class ProjectCardTab extends StatelessWidget {
               trailing: Wrap(
                 spacing: 8,
                 children: [
-                  if (status != "pending" && status != "completed") ...[
-                    InkWell(
-                      onTap: assignConsultant,
-                      child: Text("Assign\nConsultant", style: GoogleFonts.poppins(fontSize: 11), textAlign: TextAlign.center),
-                    ),
-                    InkWell(
-                      onTap: assignArchitect,
-                      child: Text("Assign\nArchitect", style: GoogleFonts.poppins(fontSize: 11), textAlign: TextAlign.center),
-                    ),
-                  ],
                   InkWell(
                     onTap: () => reportController.toggleExpanded(cardId),
                     child: Text(

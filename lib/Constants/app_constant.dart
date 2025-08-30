@@ -7,6 +7,22 @@ final String baseurl = "https://api.bdesigner.instagrp.in/";
 final String token = "token";
 final String uid = "uid";
 
+
+/**** Admin URLs ****/
+final String adminSettingUrl = "admin/setting";
+final String adminArchitectSettingUrl = "admin/setting/architect";
+
+
+/**** Client Setting URLs ****/
+final String loginPageSettingUrl = "/login-page";
+final String formFillingSettingUrl = "/form-filling-page";
+final String homePageSettingUrl = "/home-page";
+final String reportPageSettingUrl = "/report-page";
+final String videoPageSettingUrl = "/video-page";
+final String accountPageSettingUrl = "/account-page";
+final String needHelpPageSettingUrl = "/need-help-page";
+
+
 /**** Auth Urls ****/
 
 final String verifyUserUrl = "auth/verify-user";

@@ -63,11 +63,7 @@ class DealsWeb extends StatelessWidget {
                     itemCount: paginatedReports.length,
                     itemBuilder: (context, index) {
                       final report = paginatedReports[index];
-                      return ProjectCard(
-                        report: report,
-                        assignConsultant: () { },
-                        assignArchitect: () { Navigator.pushNamed(context, '/assign-architect-table', arguments: report.projectId); },
-                      );
+                      return ProjectCard(report: report,);
                     },
                   );
                 }
