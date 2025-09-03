@@ -14,7 +14,6 @@ class DashboardWeb extends StatelessWidget {
 
   final AuthController authController = Get.find<AuthController>();
   final SidebarController sidebarController = Get.find<SidebarController>();
-  final ScreenController controller = Get.find<ScreenController>();
 
   @override
   Widget build(BuildContext context) {

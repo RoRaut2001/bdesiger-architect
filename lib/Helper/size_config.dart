@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-
 class SizeConfig {
   SizeConfig._();
 
@@ -17,19 +16,23 @@ class SizeConfig {
       screenHeight = constraints.maxWidth;
       screenWidth = constraints.maxHeight;
     }
+
     blockSizeHorizontal = screenWidth! / 100;
     blockSizeVertical = screenHeight! / 100;
 
-    print('Initialized SizeConfig:');
-    print('Screen Width: $screenWidth');
-    print('Screen Height: $screenHeight');
-    print('Block Size Horizontal: $blockSizeHorizontal');
-    print('Block Size Vertical: $blockSizeVertical');
+    debugPrint('Initialized SizeConfig:');
+    debugPrint('Screen Width: $screenWidth');
+    debugPrint('Screen Height: $screenHeight');
+    debugPrint('Block Size Horizontal: $blockSizeHorizontal');
+    debugPrint('Block Size Vertical: $blockSizeVertical');
   }
 
-  static double setSp(num size) => size * blockSizeVertical!;
-  static double setHeight(num size) => size * blockSizeVertical!;
-  static double setWidth(num size) => size * blockSizeHorizontal!;
+  static double setSp(num size) =>
+      size * (blockSizeVertical ?? 1); // fallback to 1
+  static double setHeight(num size) =>
+      size * (blockSizeVertical ?? 1);
+  static double setWidth(num size) =>
+      size * (blockSizeHorizontal ?? 1);
 }
 
 extension SizeExtensionInteger on num {

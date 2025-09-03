@@ -1,27 +1,24 @@
 import 'package:b_designer_architecture/Helper/Data/lists.dart';
-import 'package:b_designer_architecture/View/Screens/Others/about.dart';
-import 'package:b_designer_architecture/View/Screens/Others/contact.dart';
-import 'package:b_designer_architecture/View/Screens/Others/privacy_policy.dart';
-import 'package:b_designer_architecture/View/Screens/Others/services.dart';
-import 'package:b_designer_architecture/View/Screens/Others/terms_conditions.dart';
 import 'package:b_designer_architecture/View/Screens/analytics.dart';
 import 'package:b_designer_architecture/View/Screens/billing_page.dart';
-import 'package:b_designer_architecture/View/Screens/Dashboard/dashboard.dart';
 import 'package:b_designer_architecture/View/help_and_support.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
+import '../View/Auth/Forms/services.dart';
 import '../View/Screens/Home/home.dart';
-import '../View/Screens/Deals/deals.dart';
+import '../View/Screens/Sidebar/Others/about.dart';
+import '../View/Screens/Sidebar/Others/contact.dart';
+import '../View/Screens/Sidebar/Others/privacy_policy.dart';
+import '../View/Screens/Sidebar/Others/terms_conditions.dart';
 
 class ScreenController extends GetxController {
 
   final List<Widget> iconList = List<Widget>.generate(4, (index) {
     return CachedNetworkImage(
       imageUrl: iconUrls[index],
-      placeholder: (context, url) => alternateIconsList[index], // Wrap IconData in an Icon widget
-      errorWidget: (context, url, error) => alternateIconsList[index], // Wrap IconData in an Icon widget
+      placeholder: (context, url) => alternateIconsList[index],
+      errorWidget: (context, url, error) => alternateIconsList[index],
     );
   });
   final List queryItemIcons = <Widget>[

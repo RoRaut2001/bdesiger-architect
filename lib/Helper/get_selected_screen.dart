@@ -3,11 +3,12 @@ import 'package:b_designer_architecture/View/Screens/Home/home.dart';
 import 'package:b_designer_architecture/View/Screens/Deals/deals.dart';
 import 'package:b_designer_architecture/View/Screens/Sidebar/Analytics/analytics.dart';
 import 'package:b_designer_architecture/View/Screens/Sidebar/Notification/notification.dart';
-import 'package:b_designer_architecture/View/Screens/Others/about.dart';
-import 'package:b_designer_architecture/View/Screens/Others/contact.dart';
-import 'package:b_designer_architecture/View/Screens/Others/privacy_policy.dart';
-import 'package:b_designer_architecture/View/Screens/Others/services.dart';
-import 'package:b_designer_architecture/View/Screens/Others/terms_conditions.dart';
+
+import '../View/Auth/Forms/services.dart';
+import '../View/Screens/Sidebar/Others/about.dart';
+import '../View/Screens/Sidebar/Others/contact.dart';
+import '../View/Screens/Sidebar/Others/privacy_policy.dart';
+import '../View/Screens/Sidebar/Others/terms_conditions.dart';
 
 Widget getSelectedScreen(String selectedItem) {
   switch (selectedItem) {
