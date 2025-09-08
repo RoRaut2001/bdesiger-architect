@@ -15,6 +15,6 @@ class NotificationScreen extends StatelessWidget {
     return Responsive(
         mobile: NotificationMobile(),
         tablet: NotificationWeb(),
-        desktop: NotificationTab());
+        desktop: NotificationWeb());
   }
 }

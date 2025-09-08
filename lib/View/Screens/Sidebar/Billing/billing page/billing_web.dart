@@ -62,9 +62,7 @@ class BillingWeb extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.w600
               ),),
-              SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,8 +99,6 @@ class BillingWeb extends StatelessWidget {
 
   Widget _buildBalanceCard({required String title, required String subtitle, required String amount, required VoidCallback onTap, required String image}){
     return Container(
-      // height: 100,
-      // width: 300,
       padding: EdgeInsets.symmetric(horizontal: 10.0,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
