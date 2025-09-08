@@ -53,7 +53,9 @@ class DashboardWeb extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.help_outline),
                     color: Colors.black87,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/help-support');
+                    },
                   ),
                   const SizedBox(width: 10),
                   Column(

@@ -3,8 +3,8 @@ import 'package:b_designer_architecture/View/Screens/Home/home.dart';
 import 'package:b_designer_architecture/View/Screens/Deals/deals.dart';
 import 'package:b_designer_architecture/View/Screens/Sidebar/Analytics/analytics.dart';
 import 'package:b_designer_architecture/View/Screens/Sidebar/Notification/notification.dart';
-
 import '../View/Auth/Forms/services.dart';
+import '../View/Screens/Sidebar/Billing/billing page/billing_page.dart';
 import '../View/Screens/Sidebar/Others/About/about.dart';
 import '../View/Screens/Sidebar/Others/Contanct/contact.dart';
 import '../View/Screens/Sidebar/Others/Privacy Policy/privacy_policy.dart';
@@ -18,6 +18,8 @@ Widget getSelectedScreen(String selectedItem) {
       return Deals();
     case 'Analytics':
       return Analytics();
+    case 'Billing':
+      return BillingPage();
     case 'Notifications':
       return NotificationScreen();
     case 'Other':

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../View/Screens/Sidebar/Others/Billing Info/billing_info.dart';
+import '../View/Screens/Sidebar/Billing/Billing Info/billing_info.dart';
 import '../View/Screens/Sidebar/Others/Payment Method/payment_method.dart';
 
 class BillingController extends GetxController{

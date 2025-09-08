@@ -58,7 +58,9 @@ class DashboardMobile extends StatelessWidget {
                 visualDensity: VisualDensity.compact,
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
-                onPressed: () { },
+                onPressed: () {
+                  Navigator.pushNamed(context, '/help-support');
+                },
               ),
               const SizedBox(width: 9,),
               Column(

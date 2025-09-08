@@ -89,7 +89,6 @@ class HomeWeb extends StatelessWidget {
               onTap: () {
                 sidebarController.selectedItem.value = 'Deals';
                 screenController.selectedDealIndex.value = deal['index'];
-
               },
             ),
           )).toList(),

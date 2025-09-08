@@ -1,8 +1,14 @@
 import 'package:b_designer_architecture/View/Auth/Login/login.dart';
 import 'package:b_designer_architecture/View/Auth/sign_up.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/Order%20Management/order_management.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/Payment%20Withdrawls/payment_and_withdrawls.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/Regulations%20Guidelines/regulations_guidelines.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/Trust%20and%20Safety/trust_and_safety.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/Your%20Account/your_account_support.dart';
 import 'package:b_designer_architecture/View/Screens/Dashboard/dashboard.dart';
 import 'package:b_designer_architecture/View/Screens/chat_screen.dart';
 import 'package:b_designer_architecture/View/Screens/project_details.dart';
+import 'package:b_designer_architecture/View/HelpAndSupport/help_and_support.dart';
 import 'package:b_designer_architecture/auth_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'View/Project/Submission Page/Submission Main Pages/submission_main_page.dart';
@@ -29,6 +35,12 @@ final Map<String, Widget Function(BuildContext)> routes = {
   '/electrical-drawing-submission': (context) => ElectricalDrawingSubmission(),
   '/plumbing-design-submission': (context) => PlumbingDesignSubmission(),
   '/estimation-submission': (context) => EstimationSubmission(),
+  '/help-support': (context) => HelpAndSupport(),
+  '/yourAccount': (context) => YourAccountSupport(),
+  '/trustAndSafety': (context) => TrustAndSafety(),
+  '/paymentsWithdrawals': (context) => PaymentAndWithdrawals(),
+  '/orderManagement': (context) => OrderManagement(),
+  '/regulationsGuidelines': (context) => RegulationsGuidelines(),
   // '/profile': (context) => Profile(controller: controller,),
 
 };

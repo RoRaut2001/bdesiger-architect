@@ -33,6 +33,7 @@ final String kaNotifications = 'assets/images/notification.png';
 /*** svg icons ***/
 final String kaHomeSvg = 'assets/svg/home.svg';
 final String kaDealsSvg = 'assets/svg/deals.svg';
+final String kaBillSvg = 'assets/svg/bill_receipt.svg';
 final String kaAnalyticsSvg = 'assets/svg/analytics.svg';
 final String kaSettingsSvg = 'assets/svg/settings.svg';
 final String kaNotificationSvg = 'assets/svg/notification.svg';
@@ -41,6 +42,7 @@ final String kaInfoSvg = 'assets/svg/info.svg';
 final String kaInstagram = 'assets/svg/instagram.svg';
 final String kaYoutube = 'assets/svg/youtube.svg';
 final String kaLinkedIn = 'assets/svg/linkedin.svg';
+final String kaRightArrowSvg = 'assets/svg/arrow-right.svg';
 
 
 

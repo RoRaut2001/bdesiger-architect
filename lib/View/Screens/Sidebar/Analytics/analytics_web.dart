@@ -5,6 +5,7 @@ import 'package:b_designer_architecture/Controller/auth_controller.dart';
 import 'package:b_designer_architecture/Helper/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -180,7 +181,7 @@ class AnalyticsWeb extends StatelessWidget {
             )
           ]
       )),
-      trailing: Image.asset(kaGo, height: 20),
+      trailing: SvgPicture.asset(kaRightArrowSvg, height: 23,),
     );
   }
 }
