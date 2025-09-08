@@ -1,4 +1,3 @@
-import 'package:b_designer_architecture/Controller/screen_controller.dart';
 import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

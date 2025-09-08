@@ -1,6 +1,6 @@
 import 'package:b_designer_architecture/Helper/responsive.dart';
-import 'package:b_designer_architecture/View/Screens/Mobile/Others/terms_conditions_mobile.dart';
-import 'package:b_designer_architecture/View/Screens/Web/Others/terms_condition_web.dart';
+import 'package:b_designer_architecture/View/Screens/Sidebar/Others/Terms%20Condition/terms_conditions_mobile.dart';
+import 'package:b_designer_architecture/View/Screens/Sidebar/Others/Terms%20Condition/terms_condition_web.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditions extends StatelessWidget {

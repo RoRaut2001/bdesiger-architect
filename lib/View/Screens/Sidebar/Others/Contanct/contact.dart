@@ -1,6 +1,6 @@
 import 'package:b_designer_architecture/Helper/responsive.dart';
-import 'package:b_designer_architecture/View/Screens/Mobile/Others/contact_mobile.dart';
-import 'package:b_designer_architecture/View/Screens/Web/Others/contact_web.dart';
+import 'package:b_designer_architecture/View/Screens/Sidebar/Others/Contanct/contact_mobile.dart';
+import 'package:b_designer_architecture/View/Screens/Sidebar/Others/Contanct/contact_web.dart';
 import 'package:flutter/material.dart';
 
 

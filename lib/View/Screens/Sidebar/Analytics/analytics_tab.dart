@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AnalyticsWeb extends StatelessWidget {
-  AnalyticsWeb({super.key});
+class AnalyticsTab extends StatelessWidget {
+  AnalyticsTab({super.key});
 
   final AuthController controller = Get.find<AuthController>();
 
@@ -22,16 +22,16 @@ class AnalyticsWeb extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           width: double.maxFinite,
           margin: EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 20.0
+              horizontal: 20.0,
+              vertical: 20.0
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(
-              color: Colors.black,
-              width: 0.5
-            )
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                  color: Colors.black,
+                  width: 0.5
+              )
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,21 +44,21 @@ class AnalyticsWeb extends StatelessWidget {
                   child: Icon(Icons.star_outline_rounded, color: Color(0xFFF98600), size: 35,),
                 ),
                 contentPadding: EdgeInsets.symmetric(
-                  horizontal: 0,
-                  vertical: 5
+                    horizontal: 0,
+                    vertical: 5
                 ),
                 title: Obx(()=>Text(controller.averageRating.value.toPrecision(2).toString(), style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFFF98600),
-                  fontSize: 1.4.t
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFF98600),
+                    fontSize: 14
                 ),)),
                 subtitle: Text("Rating in last 100 orders", style: GoogleFonts.inter(
-                  color: Color(0xFF505050),
-                  fontWeight: FontWeight.w500
+                    color: Color(0xFF505050),
+                    fontWeight: FontWeight.w500
                 ),),
               ),
               Container(
-                width: 40.w,
+                width: 400,
                 padding: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   color: Color(0xFFFFEAD1),
@@ -67,20 +67,17 @@ class AnalyticsWeb extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(Icons.error_outline_rounded, color: Color(0xFFF98600), size: 25,),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("Minimum Rating required is 4.8", style: GoogleFonts.inter(
-                      fontSize: 1.t,
-                      fontWeight: FontWeight.w600,
-                      color:  Color(0xFFF98600),
-                    ),),
+                    const SizedBox(width: 10,),
+                    Text("Minimum Rating required is 4.8",
+                      style: GoogleFonts.inter(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color:  Color(0xFFF98600),
+                      ),),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0,),
               Obx(()=>RatingBar(rating: controller.averageRating.value.toPrecision(2))),
             ],
           ),
@@ -119,21 +116,21 @@ class AnalyticsWeb extends StatelessWidget {
           ),
         ),
         Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.all(10.0),
-          margin: EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0
-          ),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                  color: Colors.black,
-                  width: 0.5
-              )
-          ),
-          child: Expanded(child: Obx(()=>ArchitectRatingSplineChart(ratingData: controller.myRatings.value)))
+            width: double.maxFinite,
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 20.0
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(
+                    color: Colors.black,
+                    width: 0.5
+                )
+            ),
+            child: Expanded(child: Obx(()=>ArchitectRatingSplineChart(ratingData: controller.myRatings.value)))
         ),
       ],
     );
@@ -158,32 +155,32 @@ class AnalyticsWeb extends StatelessWidget {
           ],
         ),
       ),
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: EdgeInsets.only(right: 10,left: 5),
       title: Text(title, style: TextStyle(
-        fontSize: 1.2.t,
-        fontWeight: FontWeight.bold,
-        color: Color(0xFF2B2B2B)
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF2B2B2B)
       ),),
 
       subtitle: RichText(text: TextSpan(
-        children: [
-          TextSpan(
-            text: subtitle, style: TextStyle(
-              fontSize: 0.8.t,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF989898)
-          ),
-          ),
-          TextSpan(
-            text: " in last 20 deals", style: TextStyle(
-              fontSize: 0.8.t,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF989898)
-          ),
-          )
-        ]
+          children: [
+            TextSpan(
+              text: subtitle, style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF989898)
+            ),
+            ),
+            TextSpan(
+              text: " in last 20 deals", style: TextStyle(
+                fontSize: 9,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF989898)
+            ),
+            )
+          ]
       )),
-      trailing: Image.asset(kaGo, height: 30),
+      trailing: Image.asset(kaGo, height: 20),
     );
   }
 }

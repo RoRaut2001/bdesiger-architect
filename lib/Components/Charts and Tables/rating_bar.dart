@@ -17,15 +17,15 @@ class RatingBar extends StatelessWidget {
         maximum: 5.0,
         showTicks: false,
         showLabels: true,
-        axisLabelStyle: TextStyle(
-          fontSize: 0.9.t,
+        axisLabelStyle: const TextStyle(
+          fontSize: 13,
           color: Color(0xFFC76C58),
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         axisTrackStyle: const LinearAxisTrackStyle(
           thickness: 30,
           color: Color(0xFFF5F5F5),
-          edgeStyle: LinearEdgeStyle.bothCurve,
+          edgeStyle: LinearEdgeStyle.bothFlat,
         ),
         labelFormatterCallback: (String value) {
           if (value == '5') {
@@ -35,20 +35,24 @@ class RatingBar extends StatelessWidget {
         },
         barPointers: [
           LinearBarPointer(
-            value: rating,
+            value: rating.clamp(3.9, 5.0), // keep within range
             thickness: 30,
-            edgeStyle: LinearEdgeStyle.bothCurve,
-            color: Color(0xFFF98600),
+            edgeStyle: LinearEdgeStyle.bothFlat, // match track edges
+            color: const Color(0xFFF98600), // fill color
           ),
         ],
         markerPointers: [
           LinearWidgetPointer(
             position: LinearElementPosition.outside,
-              value: 4.8,
-              child: Text("Min", style: GoogleFonts.inter(
-            color: Color(0xFF505050),
-            fontWeight: FontWeight.w600
-          ),)),
+            value: 4.8,
+            child: Text(
+              "Min",
+              style: GoogleFonts.inter(
+                color: const Color(0xFF505050),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           LinearWidgetPointer(
             value: 4.8,
             child: Container(

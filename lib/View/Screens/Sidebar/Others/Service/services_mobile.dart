@@ -28,29 +28,31 @@ class ServicesMobile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildSectionTitle("Company - Our Services"),
               _buildSectionTitle("Our Services"),
-              _buildParagraph(
-                  "Our platform provides end-to-end architectural solutions using cutting-edge technology, automation, and structured workflows. We ensure smooth collaboration between clients, architects, and consultants, making architectural design, visualization, and project execution more efficient. From 2D and 3D designs to AR & VR visualization, automated tracking, and structured communication, we offer a comprehensive ecosystem for residential architecture projects."),
-              const SizedBox(height: 10),
+              _buildParagraph("Our platform provides end-to-end architectural solutions using cutting-edge technology, automation, and structured workflows. "
+                  "We ensure smooth collaboration between clients, architects, and consultants, making architectural design, visualization, and "
+                  "project execution more efficient. From 2D and 3D designs to AR & VR visualization, automated tracking, and structured communication, "
+                  "we offer a comprehensive ecosystem for residential architecture projects.",),
               _buildSectionTitle("1. 2D & 3D Architectural Design Services"),
-              _buildParagraph(
-                  "We offer complete design services to help clients visualize their dream homes before construction begins."),
-              _buildSubTitle("2D Floor Plans"),
+              _buildParagraph("We offer complete design services to help clients visualize their dream homes before construction begins.",),
+              _buildSectionTitle("2D Floor Plans"),
+              _buildParagraph('Our detailed 2D floor plans provide a clear understanding of the layout, '
+                  'room dimensions, and space utilization.\nThese plans include:'),
               _buildBulletPoint("Accurate room dimensions and layout"),
               _buildBulletPoint("Furniture placement suggestions"),
               _buildBulletPoint("Door and window positioning"),
               _buildBulletPoint("Wall thickness and construction details"),
-              const SizedBox(height: 10),
-              _buildSubTitle("3D House Elevation Designs"),
+              _buildSectionTitle("3D House Elevation Designs"),
+              _buildParagraph('With realistic 3D elevation designs, clients get a highly '
+                  'detailed preview of their home\'s exterior.\nWe offer:'),
               _buildBulletPoint("High-quality 3D renders for a lifelike experience"),
               _buildBulletPoint("Multiple angles & lighting variations"),
               _buildBulletPoint("Exterior material and color selection suggestions"),
               _buildBulletPoint("Customization based on client preferences"),
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
               _buildSectionTitle("2. AR & VR Technology for Immersive Visualization"),
-              _buildParagraph(
-                  "We integrate Augmented Reality (AR) & Virtual Reality (VR) to provide a lifelike experience before construction even begins."),
+              _buildParagraph('We integrate Augmented Reality (AR) & Virtual Reality (VR) '
+                  'to provide a lifelike experience before construction even begins.'),
               _buildBulletPoint("Walk through your home in Virtual Reality"),
               _buildBulletPoint("Augmented Reality previews for real-world comparison"),
             ],

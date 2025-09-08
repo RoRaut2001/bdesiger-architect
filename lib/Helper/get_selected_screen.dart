@@ -5,10 +5,10 @@ import 'package:b_designer_architecture/View/Screens/Sidebar/Analytics/analytics
 import 'package:b_designer_architecture/View/Screens/Sidebar/Notification/notification.dart';
 
 import '../View/Auth/Forms/services.dart';
-import '../View/Screens/Sidebar/Others/about.dart';
-import '../View/Screens/Sidebar/Others/contact.dart';
-import '../View/Screens/Sidebar/Others/privacy_policy.dart';
-import '../View/Screens/Sidebar/Others/terms_conditions.dart';
+import '../View/Screens/Sidebar/Others/About/about.dart';
+import '../View/Screens/Sidebar/Others/Contanct/contact.dart';
+import '../View/Screens/Sidebar/Others/Privacy Policy/privacy_policy.dart';
+import '../View/Screens/Sidebar/Others/Terms Condition/terms_conditions.dart';
 
 Widget getSelectedScreen(String selectedItem) {
   switch (selectedItem) {
@@ -20,6 +20,7 @@ Widget getSelectedScreen(String selectedItem) {
       return Analytics();
     case 'Notifications':
       return NotificationScreen();
+    case 'Other':
     case 'Services':
       return Services();
     case 'About':

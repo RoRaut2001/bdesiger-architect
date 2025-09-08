@@ -76,7 +76,7 @@ final String kaWithdrawn = "assets/images/withdrawn.png";
 /**** Rating Icons ****/
 
 final String kaRate = "assets/images/rate.png";
-final String kaGo = "assets/images/go.png";
+final String kaGo = "assets/images/arrow-right.png";
 
 
 /**** Submission Image ****/

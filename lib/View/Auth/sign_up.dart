@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 import '../../Helper/Data/lists.dart';
-import '../Screens/Sidebar/Others/services.dart';
+import '../Screens/Sidebar/Others/Service/services.dart';
 import 'Forms/additional_info.dart';
 import 'Forms/basic_details.dart';
 import 'Forms/documents.dart';

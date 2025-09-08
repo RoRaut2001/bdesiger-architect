@@ -45,24 +45,24 @@ class ReportController extends GetxController{
       if (response.statusCode == 200) {
         final data = response.body;
         if (data != null && data['projects'] != null) {
+          // Filter only reports of logged-in architect
           var fetchedReports = (data['projects'] as List)
               .map((project) => ReportModel.fromJson(project))
+              .where((report) => report.architectId == uid)
               .toList();
 
-          // Filter reports based on status
-
+          // Split reports by status
           newReports.assignAll(
             fetchedReports.where((report) => report.status == "created").toList(),
           );
 
           pendingReports.assignAll(
-            fetchedReports.where((report) => report.status == "pending" && report.architectId == uid).toList(),
+            fetchedReports.where((report) => report.status == "pending").toList(),
           );
 
           completedReports.assignAll(
-            fetchedReports.where((report) => report.status == "completed" && report.architectId == uid).toList(),
+            fetchedReports.where((report) => report.status == "completed").toList(),
           );
-
         } else {
           print("No projects found in the response.");
           Get.snackbar("No Data", "No projects found.");
@@ -78,6 +78,7 @@ class ReportController extends GetxController{
       isLoading(false);
     }
   }
+
 
 
   Future<void> requestProject(String projectId) async{

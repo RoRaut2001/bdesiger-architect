@@ -13,7 +13,6 @@ import 'View/Project/Submission Page/Interior Submission/interior_submission.dar
 import 'View/Project/Submission Page/Plumbing Design Submission/plumbing_design_submission.dart';
 import 'View/Project/Submission Page/Structure Design Submission/structure_design_submission.dart';
 import 'View/Project/Submission Page/Three D Plan Submission/three_d_plan_submission.dart';
-import 'View/Screens/profile.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
 '/auth': (context)=> AuthWrapper(),

@@ -1,5 +1,4 @@
 import 'package:b_designer_architecture/Helper/Data/lists.dart';
-import 'package:b_designer_architecture/View/Screens/analytics.dart';
 import 'package:b_designer_architecture/View/Screens/billing_page.dart';
 import 'package:b_designer_architecture/View/help_and_support.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,10 +6,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../View/Auth/Forms/services.dart';
 import '../View/Screens/Home/home.dart';
-import '../View/Screens/Sidebar/Others/about.dart';
-import '../View/Screens/Sidebar/Others/contact.dart';
-import '../View/Screens/Sidebar/Others/privacy_policy.dart';
-import '../View/Screens/Sidebar/Others/terms_conditions.dart';
+import '../View/Screens/Sidebar/Analytics/analytics.dart';
+import '../View/Screens/Sidebar/Others/About/about.dart';
+import '../View/Screens/Sidebar/Others/Contanct/contact.dart';
+import '../View/Screens/Sidebar/Others/Privacy Policy/privacy_policy.dart';
+import '../View/Screens/Sidebar/Others/Terms Condition/terms_conditions.dart';
 
 class ScreenController extends GetxController {
 
