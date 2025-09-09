@@ -72,32 +72,26 @@ class BillingMobile extends StatelessWidget {
                     fontWeight: FontWeight.w600
                 ),),
               const SizedBox(height: 10.0,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Obx(()=>TextButton(
-                      onPressed: (){
-                        controller.billingIndex.value = 0;
-                      }, child: Text("Billing Info", style: GoogleFonts.roboto(
-                      fontSize: 13,
-                      color: Colors.black,
-                      fontWeight: controller.billingIndex.value == 0 ? FontWeight.bold : FontWeight.w500,
-                      decoration: controller.billingIndex.value == 0 ? TextDecoration.underline : null
-                  ),
-                  ))),
-                  Obx(()=>TextButton(
-                      onPressed: (){
-                        controller.billingIndex.value = 1;
-                      }, child: Text("Payment Method", style: GoogleFonts.roboto(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontWeight: controller.billingIndex.value == 1 ? FontWeight.bold : FontWeight.w500,
-                      decoration: controller.billingIndex.value == 1 ? TextDecoration.underline : null
-                  ),))),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    buildTabItem(
+                      title: "Billing Info",
+                      index: 0,
+                      controller: controller,
+                    ),
+                    const SizedBox(width: 10),
+                    buildTabItem(
+                      title: "Payment Method",
+                      index: 1,
+                      controller: controller,
+                    ),
+                  ],
+                ),
               ),
-              Divider(),
               Obx(()=>controller.billingScreens[controller.billingIndex.value]),
             ],
           ),
@@ -146,5 +140,33 @@ class BillingMobile extends StatelessWidget {
         ],
       ),
     );
+  }
+  Widget buildTabItem({
+    required String title,
+    required int index,
+    required BillingController controller,
+  }) {
+    return Obx(() => InkWell(
+      onTap: () { controller.billingIndex.value = index;},
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.roboto(
+              fontSize: 13,
+              color: Colors.black,
+              fontWeight: controller.billingIndex.value == index ? FontWeight.w500 : FontWeight.normal,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Container(
+            height: 1,
+            width: 70,
+            color: controller.billingIndex.value == index ? Colors.black : Colors.transparent,
+          ),
+        ],
+      ),
+    ));
   }
 }

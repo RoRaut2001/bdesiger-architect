@@ -30,6 +30,16 @@ class ProfileController extends GetxController{
   final TextEditingController villageController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
 
+  final TextEditingController nameControllerBilling = TextEditingController();
+  final TextEditingController lastNameControllerBilling = TextEditingController();
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController GSTController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
+  final TextEditingController stateControllerBilling = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController postalController = TextEditingController();
+
   @override
   void onInit() {
     fetchProfile();

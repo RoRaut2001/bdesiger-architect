@@ -11,9 +11,12 @@ import 'package:flutter/material.dart';
 import '../View/Auth/Forms/services.dart';
 import '../View/Screens/Home/home.dart';
 import '../View/Screens/Sidebar/Analytics/analytics.dart';
+import '../View/Screens/Sidebar/Billing/Billing Info/billing_info.dart';
+import '../View/Screens/Sidebar/Billing/History/billing_history.dart';
 import '../View/Screens/Sidebar/Billing/billing page/billing_page.dart';
 import '../View/Screens/Sidebar/Others/About/about.dart';
 import '../View/Screens/Sidebar/Others/Contanct/contact.dart';
+import '../View/Screens/Sidebar/Others/Payment Method/payment_method.dart';
 import '../View/Screens/Sidebar/Others/Privacy Policy/privacy_policy.dart';
 import '../View/Screens/Sidebar/Others/Terms Condition/terms_conditions.dart';
 

@@ -1,6 +1,5 @@
 import 'package:b_designer_architecture/Constants/constant_asset.dart';
 import 'package:b_designer_architecture/Controller/billing_controller.dart';
-import 'package:b_designer_architecture/Helper/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +57,7 @@ class BillingWeb extends StatelessWidget {
               const SizedBox(height: 30.0,),
               Text("Billing & Payment",
                 style: GoogleFonts.outfit(
-                  fontSize: 15,
+                  fontSize: 17,
                   color: Colors.black,
                   fontWeight: FontWeight.w600
               ),),
@@ -67,28 +66,25 @@ class BillingWeb extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Obx(()=>TextButton(
-                      onPressed: (){
-                    controller.billingIndex.value = 0;
-                  }, child: Text("Billing Info", style: GoogleFonts.roboto(
-                    fontSize: 1.t,
-                    color: Colors.black,
-                    fontWeight: controller.billingIndex.value == 0 ? FontWeight.bold : FontWeight.w500,
-                    decoration: controller.billingIndex.value == 0 ? TextDecoration.underline : null
+                  buildTabItem(
+                    title: "Billing History",
+                    index: 0,
+                    controller: controller,
                   ),
-                  ))),
-                  Obx(()=>TextButton(
-                      onPressed: (){
-                    controller.billingIndex.value = 1;
-                  }, child: Text("Payment Method", style: GoogleFonts.roboto(
-                    fontSize: 1.t,
-                    color: Colors.black,
-                    fontWeight: controller.billingIndex.value == 1 ? FontWeight.bold : FontWeight.w500,
-                      decoration: controller.billingIndex.value == 1 ? TextDecoration.underline : null
-                  ),))),
+                  const SizedBox(width: 15),
+                  buildTabItem(
+                    title: "Billing Info",
+                    index: 1,
+                    controller: controller,
+                  ),
+                  const SizedBox(width: 15),
+                  buildTabItem(
+                    title: "Payment Method",
+                    index: 2,
+                    controller: controller,
+                  ),
                 ],
               ),
-              Divider(),
               Obx(()=>controller.billingScreens[controller.billingIndex.value]),
             ],
           ),
@@ -137,5 +133,34 @@ class BillingWeb extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget buildTabItem({
+    required String title,
+    required int index,
+    required BillingController controller,
+  }) {
+    return Obx(() => InkWell(
+      onTap: () { controller.billingIndex.value = index;},
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.roboto(
+              fontSize: 13,
+              color: Colors.black,
+              fontWeight: controller.billingIndex.value == index ? FontWeight.w500 : FontWeight.normal,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Container(
+            height: 1,
+            width: 70,
+            color: controller.billingIndex.value == index ? Colors.black : Colors.transparent,
+          ),
+        ],
+      ),
+    ));
   }
 }
