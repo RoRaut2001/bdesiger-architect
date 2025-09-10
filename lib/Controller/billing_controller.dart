@@ -8,17 +8,16 @@ import '../View/Screens/Sidebar/Others/Payment Method/payment_method.dart';
 class BillingController extends GetxController {
 
   var billingIndex = 0.obs;
+  var paymentMethods = <String>[].obs;
+  var isLoading = true.obs;
+  var orders = <BillingOrderModel>[].obs;
 
-  /// Screens for billing tabs
+
   List<Widget> get billingScreens => [
     BillingHistory(),
     BillingInfo(),
     PaymentMethod(),
   ];
-
-  var paymentMethods = <String>[].obs;
-  var isLoading = true.obs;
-  var orders = <BillingOrderModel>[].obs;
 
   @override
   void onInit() {

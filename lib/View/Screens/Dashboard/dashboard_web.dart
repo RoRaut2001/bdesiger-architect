@@ -1,7 +1,9 @@
+import 'package:b_designer_architecture/Components/Buttons/update_button.dart';
 import 'package:b_designer_architecture/Controller/sidebar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:media_kit/media_kit.dart';
 import 'package:popover/popover.dart';
 import '../../../Components/Buttons/primary_button.dart';
 import '../../../Controller/auth_controller.dart';
@@ -14,12 +16,13 @@ class DashboardWeb extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
   final SidebarController sidebarController = Get.find<SidebarController>();
 
+  final RxBool _isSidebarOpen = true.obs;
+
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: WillPopScope(
-        onWillPop: () async{
+        onWillPop: () async {
           Navigator.pushNamed(context, '/dashboard');
           return false;
         },
@@ -31,17 +34,25 @@ class DashboardWeb extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: Container(
               decoration: const BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.black, width: 0.5),),
+                border: Border(bottom: BorderSide(color: Colors.black, width: 0.5)),
               ),
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Image.asset(
-                      'assets/images/bdesigner_official_logo_tranparent.png',
-                      height: 42,
-                      fit: BoxFit.cover,
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: null,
+                      onTap: () {
+                        _isSidebarOpen.value = !_isSidebarOpen.value;
+                      },
+                      child: Image.asset(
+                        'assets/images/bdesigner_official_logo_tranparent.png',
+                        height: 42,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -70,7 +81,7 @@ class DashboardWeb extends StatelessWidget {
                         ),
                       ),
                       Obx(() => Text(
-                        authController.userFirstName.value?? 'NA',
+                        authController.userFirstName.value ?? 'NA',
                         style: GoogleFonts.poppins(
                           color: Color(0xFF656565),
                           fontSize: 14,
@@ -95,11 +106,12 @@ class DashboardWeb extends StatelessWidget {
           backgroundColor: Colors.white,
           body: Row(
             children: [
-              Sidebar(),
+              // Use Obx to rebuild the sidebar based on the visibility state
+              Obx(() => _isSidebarOpen.value ? Sidebar() : const SizedBox.shrink()),
               Expanded(
                 child: Obx(() {
                   return Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xFFFFFBF4),
                     ),
                     child: getSelectedScreen(sidebarController.selectedItem.value),
@@ -112,6 +124,7 @@ class DashboardWeb extends StatelessWidget {
       ),
     );
   }
+
   void showPopUpOptions(BuildContext context){
     showPopover(
         backgroundColor: Colors.transparent,
@@ -124,8 +137,8 @@ class DashboardWeb extends StatelessWidget {
         bodyBuilder: (context){
           return Container(
             margin: EdgeInsets.only(right: 20),
-            height: 110,
-            width: 160,
+            height: 130,
+            width: 300,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5.0),
@@ -138,7 +151,7 @@ class DashboardWeb extends StatelessWidget {
                 ListTile(
                   contentPadding: EdgeInsets.only(left: 10, right: 5),
                   title:  Obx(() => Text(
-                    authController.userFirstName.value ?? 'NA',
+                    authController.userFirstName.value ?? 'User',
                     style: GoogleFonts.poppins(
                       color: Color(0xFF656565),
                       fontSize: 14,
@@ -146,27 +159,22 @@ class DashboardWeb extends StatelessWidget {
                     ),
                   )),
                   subtitle:  Obx(() => Text(
-                    authController.userData.value.email?? 'NA',
+                    authController.userData.value.email?? 'email',
                     style: GoogleFonts.poppins(
                       color: Color(0xFF656565),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 11,
+                      fontWeight: FontWeight.normal,
                     ),
                   )),
                 ),
                 Divider(color: Color(0xFF8A8A8A), height: 1,),
                 const SizedBox(height: 5,),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: PrimaryButton(
-                    title: "Logout",
-                    onTap: (){authController.logout();},
-                    isHollow: true,),
-                ),
+                UpdateButton(
+                  onTap: (){authController.logout();},
+                  label: 'Logout',),
               ],
             ),
           );
         });
   }
 }
-

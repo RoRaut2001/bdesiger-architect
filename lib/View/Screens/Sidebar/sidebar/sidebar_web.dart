@@ -1,3 +1,5 @@
+// Path: lib/View/Screens/Sidebar/sidebar/sidebar_web.dart
+
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +25,7 @@ class SidebarWeb extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Removed the Row with the logo and close button.
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(

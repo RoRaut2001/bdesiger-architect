@@ -14,21 +14,19 @@ class PaymentMethod extends StatelessWidget {
           title: Text(
             "Payment Method",
             style: TextStyle(
-                fontSize: 1.3.t,
+                fontSize: 13,
                 color: Colors.black,
                 fontWeight: FontWeight.w600),
           ),
           subtitle: Text(
             "Easily manage your payments methods through our secure system.",
             style: TextStyle(
-              fontSize: 1.0.t,
+              fontSize: 12,
               color: Colors.black,
             ),
           ),
         ),
-        SizedBox(
-          height: 30.0,
-        ),
+        const SizedBox(height: 30.0),
         Container(
           width: double.maxFinite,
           padding: EdgeInsets.all(10.0),
@@ -40,10 +38,6 @@ class PaymentMethod extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ...List.generate(controller.paymentMethods.length, (index){
-              //   return Text(controller.paymentMethods[index]);
-              // }
-              // ),
               Divider(),
               InkWell(
                 onTap: (){
@@ -91,13 +85,16 @@ class PaymentMethod extends StatelessWidget {
   void addPaymentMethodPopUp(BuildContext context){
     showDialog(context: context, builder: (context){
       return AlertDialog(
+        backgroundColor: Colors.white,
         content: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildPaymentMethodField(hintText: "Enter Method name", controller: TextEditingController()),
+            const SizedBox(height: 10,),
             _buildPaymentMethodField(hintText: "Enter UPI ID", controller: TextEditingController()),
+            const SizedBox(height: 10,),
             _buildPaymentMethodField(hintText: "Enter Backup phone number", controller: TextEditingController()),
           ],
         ),

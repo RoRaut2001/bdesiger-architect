@@ -118,6 +118,7 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    loadUserData();
     forms.value = [
     ];
   }
@@ -134,19 +135,26 @@ class AuthController extends GetxController {
         final response = await authRepo.login(email, password);
 
         if (response.statusCode == 200) {
-          final user = response.body["userData"];
-
           showSuccess(context, "Login Successful");
 
+          final user = response.body["userData"];
+
+          // Store data in controller
+          userData.value = UserModel.fromJson(user);
+          userFirstName.value = user["name"] ?? "";
+
+          // Save in SharedPreferences
           await authRepo.sharedPreferences.setString("uid", user["uid"] ?? "");
           await authRepo.sharedPreferences.setString("firstname", user["name"] ?? "");
+          await authRepo.sharedPreferences.setString("email", user["email"] ?? "");
           await authRepo.sharedPreferences.setString("token", user["token"] ?? "");
 
+          // Update header
           authRepo.apiClient.updateHeader(user["token"], user["uid"]);
 
-          Navigator.pushReplacementNamed(context, '/dashboard');
+          Navigator.popAndPushNamed(context, '/dashboard');
         } else {
-          showError(context, response.body["message"] ?? "Login failed");
+          showError(context, response.body["message"]);
         }
       }
     } catch (err) {
@@ -156,6 +164,20 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  void loadUserData() {
+    final savedName = authRepo.sharedPreferences.getString("firstname");
+    final savedEmail = authRepo.sharedPreferences.getString("email");
+
+    if (savedName != null && savedName.isNotEmpty) {
+      userFirstName.value = savedName;
+    }
+
+    if (savedEmail != null && savedEmail.isNotEmpty) {
+      userData.value.email = savedEmail; // if you want to bind it into userData
+    }
+  }
+
 
 
   Future<void> verifyUser(String uid, BuildContext context) async {
@@ -267,7 +289,7 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     await authRepo.sharedPreferences.clear();
-    Navigator.pushReplacementNamed(Get.context!, '/');
+    Navigator.pushReplacementNamed(Get.context!, '/login');
   }
 
   Future<void> fetchProfile() async {
@@ -298,7 +320,6 @@ class AuthController extends GetxController {
       Response response = await authRepo.getMyRatings();
       if (response.statusCode == 200) {
         final data = response.body;
-
         // Check if the response contains ratings
         if (data != null && data['ratings'] != null) {
           // Parse ratings into a list of Rating objects
